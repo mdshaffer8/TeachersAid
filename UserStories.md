@@ -11,6 +11,7 @@ Features:
 1. Navigation provides User Signup and User Login
 1. Slider will provide background info on the Teacher's Aid app
 1. Immediately following the slider is a section with a search bar and CTA buttons (search by category, search by teacher)
+1. Featured Wishlists
 
 ![](images/HomePage.jpg)
 
@@ -19,12 +20,12 @@ Features:
 ![](images/donation-wishlist.JPG)
 
 ### Wireframes
-#### Donor User Story - All Wishlist Items Page
+#### All Wishlist Items Page
 Features:
 1. All Wishlist items on one page
 2. Aside section for Search bar and Filters (Category, Teacher)
 ![](images/AllItemsPage.jpg)
-#### Donor User Story - All Teachers Page
+#### All Teachers Page
 Features:
 1. All Teacher's on one page
 2. Aside section for Search bar and Filters (Subject, Grade)
