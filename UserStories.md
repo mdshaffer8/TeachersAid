@@ -4,7 +4,7 @@ Workflow showing Epics and User Stories created in GitHub Issues using ZenHub.
 
 ## User Stories
 
-![](images/home-page.jpg)
+![](images/home-page.JPG)
 
 ### Wireframes
 
@@ -15,7 +15,7 @@ Workflow showing Epics and User Stories created in GitHub Issues using ZenHub.
 
 ## User Stories
 
-![](images/donation-wishlist.jpg)
+![](images/donation-wishlist.JPG)
 
 ### Wireframes
 
@@ -25,7 +25,7 @@ Workflow showing Epics and User Stories created in GitHub Issues using ZenHub.
 
 # User Profile (Epic)
 
-![](images/user-profile.jpg)
+![](images/user-profile.JPG)
 
 ## User Stories
 
