@@ -1,2 +1,0 @@
-# TeachersAid
-LaunchCode Capstone Project
