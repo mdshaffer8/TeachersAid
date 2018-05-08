@@ -27,12 +27,17 @@ posts = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', posts=posts)
+    return render_template('home.html', title='Home')
 
 
-@app.route("/about")
+@app.route("/list")
+def list():
+    return render_template('list.html', posts=posts)
+
+
+@app.route("/test")
 def about():
-    return render_template('about.html', title='About')
+    return render_template('test.html', title='Test')
 
 
 @app.route("/register", methods=['GET', 'POST'])
