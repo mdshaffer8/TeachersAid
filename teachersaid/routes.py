@@ -3,25 +3,9 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from teachersaid import app, db, bcrypt
-from teachersaid.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from teachersaid.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from teachersaid.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-
-
-posts = [
-    {
-        'author': 'Miss Moline',
-        'title': 'Science Supplies Needed',
-        'content': 'Test',
-        'date_posted': 'May 8, 2018'
-    },
-    {
-        'author': 'Mr. Smith',
-        'title': 'Music Instruments Needed',
-        'content': 'Test',
-        'date_posted': 'May 8, 2018'
-    }
-]
 
 
 @app.route("/")
@@ -32,6 +16,7 @@ def home():
 
 @app.route("/list")
 def list():
+    posts = Post.query.all()
     return render_template('list.html', posts=posts)
 
 
@@ -86,6 +71,7 @@ def save_picture(form_picture):
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
+
     i.save(picture_path)
 
     return picture_fn
@@ -109,3 +95,16 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
+
+@app.route("/post/new", methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_post.html', title='New Post', form=form)
