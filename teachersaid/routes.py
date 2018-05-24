@@ -18,13 +18,13 @@ def home():
 @app.route("/list")
 def list():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3)
     return render_template('list.html', posts=posts)
 
 
-@app.route("/test")
+@app.route("/about")
 def about():
-    return render_template('test.html', title='Test')
+    return render_template('about.html', title='About')
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -109,8 +109,8 @@ def new_post():
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_post.html', title='New Post', 
-                            form=form, legend='New Post')
+    return render_template('create_post.html', title='Add Item', 
+                            form=form, legend='Add a Wish List Item')
 
 
 @app.route("/post/<int:post_id>")
