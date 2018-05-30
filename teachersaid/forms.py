@@ -59,8 +59,10 @@ class UpdateAccountForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
+    title = StringField('Item Name', validators=[DataRequired()])
+    summary = StringField('Summary', validators=[DataRequired()])
+    description = TextAreaField('Full Description', validators=[DataRequired()])
+    total = StringField('Price', validators=[DataRequired()])
     submit = SubmitField('Post')
 
 

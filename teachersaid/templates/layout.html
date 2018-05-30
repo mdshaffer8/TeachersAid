@@ -16,6 +16,14 @@
         <title>Teacher's Aid</title>
     {% endif %}
 </head>
+
+  <div id="loginModal" class="modal fade" tabindex=-1 role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+
 <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -37,7 +45,7 @@
                   <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                   <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
                 {% else %}
-                  <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                  <a class="nav-item nav-link" data-toggle="modal" data-target="#addLoginButton">Login</a>
                   <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
                 {% endif %}
               </div>
@@ -48,7 +56,7 @@
 
     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
               {% for category, message in messages %}
@@ -60,21 +68,11 @@
           {% endwith %}
           {% block content %}{% endblock %}
         </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Filter</h3>
-            <p class='text-muted'>
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Categories</li>
-                <li class="list-group-item list-group-item-light">Teacher</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
+        
       </div>
     </main>
+
+      
 
 
     <!-- Optional JavaScript -->
@@ -82,5 +80,33 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+
+    <script>
+        $(document).ready(function() {
+      
+          // add step button opens modal containing step form loaded via ajax
+          $('#addLoginButton').click(function() {
+            var url = "{{ url_for('login') }}";
+            $.get(url, function(data) {
+              $('#loginModal .modal-content').html(data);
+              $('#loginModal').modal();
+      
+              $('#submit').click(function(event) {
+                event.preventDefault();
+                $.post(url, data=$('#loginForm').serialize(), function(data) {
+                  if (data.status == 'ok') {
+                    $('#loginModal').modal('hide');
+                    location.reload();
+                  }
+                  else {
+                    $('#loginModal .modal-content').html(data);
+                  }
+                });
+              })
+            });
+          });
+      </script>
+
+
+  </body>
 </html>
