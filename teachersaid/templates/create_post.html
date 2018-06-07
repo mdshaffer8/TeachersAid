@@ -57,6 +57,34 @@
                         {{ form.total(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+
+                <div class="form-group">
+                    <label for="txtPost">Photos</label>
+     
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            Browse&hellip; <input type="file" id="fileupload" name="file" multiple>
+                        </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+     
+                </div>
+     
+                <div class="form-group">
+                    <label>Mark this as private and not visible to others.</label>
+                    <br/>
+                    <input type="checkbox"> Mark as Private <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                </div>
+     
+                <div class="form-group">
+                    <label>Have you already accomplished this?</label>
+                    <br/>
+                    <input type="checkbox"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
+     
+
         </fieldset>
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-info") }}

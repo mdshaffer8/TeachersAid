@@ -115,6 +115,10 @@ def new_post():
     return render_template('create_post.html', title='Add Item', 
                             form=form, legend='Add a Wish List Item')
 
+@app.route('/add_wish', methods=['POST'])
+def add_wish():
+    return render_template('add_wish.html')
+
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
