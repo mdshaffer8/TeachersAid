@@ -4,9 +4,9 @@
 <!-- Page Content -->
 <div class="container">
 
-  <div class="row">
+  <div class="row justify-content-md-center">
 
-    <div class="col-lg-3">
+    <!-- <div class="col-lg-3">
 
       <h1 class="my-4">Filter</h1>
       <div class="list-group">
@@ -15,10 +15,10 @@
         <a href="#" class="list-group-item">Category 3</a>
       </div>
 
-    </div>
+    </div> -->
     <!-- /.col-lg-3 -->
 
-    <div class="col-lg-9">
+    <div class="col-lg-12">
 
       <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -28,13 +28,13 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
-            <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+            <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+            <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+            <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -59,9 +59,7 @@
                 <h5>${{ post.total }}</h5>
                 <p class="card-text">{{ post.summary }}</p>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
+              
             </div>
           </div>
         {% endfor %}

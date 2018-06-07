@@ -15,6 +15,3 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
     
-    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
-
-    POSTS_PER_PAGE = 10

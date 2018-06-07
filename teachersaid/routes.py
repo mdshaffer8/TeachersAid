@@ -4,17 +4,11 @@ from PIL import Image
 from datetime import datetime
 from flask import render_template, url_for, flash, redirect, request, abort, g, current_app
 from teachersaid import app, db, bcrypt, mail
-from teachersaid.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm, SearchForm
+from teachersaid.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
 from teachersaid.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
-
-# @app.before_request
-# def before_request():
-#     current_user.last_seen = datetime.utcnow()
-#     db.session.commit()
-#     g.search_form = SearchForm()
 
 
 @app.route("/")
@@ -213,15 +207,3 @@ def reset_token(token):
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
 
-@app.route('/search')
-def search():
-    g.search_form = SearchForm()
-    page = request.args.get('page', 1, type=int)
-    posts, total = Post.search(g.search_form.q.data, page,
-                               current_app.config['POSTS_PER_PAGE'])
-    next_url = url_for('search', q=g.search_form.q.data, page=page + 1) \
-        if total > page * current_app.config['POSTS_PER_PAGE'] else None
-    prev_url = url_for('search', q=g.search_form.q.data, page=page - 1) \
-        if page > 1 else None
-    return render_template('search.html', title='Search', posts=posts,
-                           next_url=next_url, prev_url=prev_url)
