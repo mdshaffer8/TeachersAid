@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="content-section">
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="{{ url_for('new_post') }}" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
@@ -58,7 +58,22 @@
                     {% endif %}
                 </div>
 
+
                 <div class="form-group">
+                    {{ form.post_image.label(class="form-control-label") }}
+                    {% if form.post_image.errors %}
+                        {{ form.post_image(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.post_image.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.post_image(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <!-- <div class="form-group">
                     <label for="txtPost">Photos</label>
      
                     <div class="input-group">
@@ -70,7 +85,7 @@
                         <input type="text" class="form-control" readonly>
                     </div>
      
-                </div>
+                </div> -->
      
                 <div class="form-group">
                     <label>Mark this as private and not visible to others.</label>
@@ -79,9 +94,9 @@
                 </div>
      
                 <div class="form-group">
-                    <label>Have you already accomplished this?</label>
+                    <label>Have you already received this?</label>
                     <br/>
-                    <input type="checkbox"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <input type="checkbox"> Mark as Received <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </div>
      
 

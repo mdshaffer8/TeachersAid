@@ -28,13 +28,13 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
-            <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="First slide">
+            <img class="d-block img-fluid" src="/static/img/slide1.jpg" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="Second slide">
+            <img class="d-block img-fluid" src="/static/img/slide2.jpg" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="Third slide">
+            <img class="d-block img-fluid" src="/static/img/slide3.jpg" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -46,12 +46,13 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-
+      <h1>All Wish List Items</h1>
       <div class="row">
         {% for post in posts.items %}
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="{{ url_for('post', post_id=post.id) }}"><img class="card-img-top" src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="width:335px; height:300px;"></a>
+
               <div class="card-body">
                 <h4 class="card-title">
                     <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
@@ -64,6 +65,7 @@
           </div>
         {% endfor %}
       </div>
+    </div>
 
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}

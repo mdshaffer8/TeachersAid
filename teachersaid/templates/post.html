@@ -17,6 +17,11 @@
       <h2 class="article-title">{{ post.title }}</h2>
       <p class="article-content">{{ post.description }}</p>
       </div>
+      <div>
+      {% if post.image_url %}
+      <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="width:600px;height:450px;">
+      {% endif %}
+    </div>
   </article>
   <!-- Modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

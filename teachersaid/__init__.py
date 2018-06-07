@@ -26,5 +26,8 @@ login_manager.login_message_category = 'info'
 
 mail = Mail(app)
 
+images = UploadSet('images', IMAGES)
+configure_uploads(app, images)
+
 
 from teachersaid import routes, models

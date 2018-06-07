@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from datetime import datetime
 from flask import render_template, url_for, flash, redirect, request, abort, g, current_app
-from teachersaid import app, db, bcrypt, mail
+from teachersaid import app, db, bcrypt, mail, images
 from teachersaid.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
 from teachersaid.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
@@ -105,13 +105,17 @@ def account():
 @login_required
 def new_post():
     form = PostForm()
-    if form.validate_on_submit():
-        post = Post(title=form.title.data, description=form.description.data, 
-                    author=current_user, total=form.total.data, summary=form.summary.data)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post has been created!', 'success')
-        return redirect(url_for('list'))
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            image_filename = images.save(request.files['post_image'])
+            image_url = images.url(image_filename)
+            post = Post(title=form.title.data, description=form.description.data, 
+                        author=current_user, total=form.total.data, summary=form.summary.data,
+                        image_filename=image_filename, image_url=image_url)
+            db.session.add(post)
+            db.session.commit()
+            flash('Your post has been created!', 'success')
+            return redirect(url_for('list'))
     return render_template('create_post.html', title='Add Item', 
                             form=form, legend='Add a Wish List Item')
 

@@ -42,10 +42,12 @@ class Post(db.Model):
     summary = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
     total = db.Column(db.String(10), nullable=False)
+    image_filename = db.Column(db.String, default=None, nullable=True)
+    image_url = db.Column(db.String, default=None, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}', '{self.summary}', '{self.description}', '{self.total}')"
+        return f"Post('{self.title}', '{self.date_posted}', '{self.summary}', '{self.description}', '{self.total}', '{self.image_filename}', '{self.image_url}')"
 
 
 

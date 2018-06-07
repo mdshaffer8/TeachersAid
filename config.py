@@ -1,5 +1,6 @@
 import os
 from os.path import join, isfile
+from werkzeug.utils import secure_filename
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -15,3 +16,11 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
     
+    # UPLOAD_FOLDER = '/static/img'
+    # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+    UPLOADS_DEFAULT_DEST = basedir + '/teachersaid/static/img/'
+    UPLOADS_DEFAULT_URL = 'http://localhost:5000/static/img/'
+ 
+    UPLOADED_IMAGES_DEST = basedir + '/teachersaid/static/img/'
+    UPLOADED_IMAGES_URL = 'http://localhost:5000/static/img/'
