@@ -1,5 +1,6 @@
 import os
 from os.path import join, isfile
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
@@ -13,3 +14,7 @@ class Config(object):
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+
+    POSTS_PER_PAGE = 10
